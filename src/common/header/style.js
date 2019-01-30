@@ -59,6 +59,19 @@ border-radius:19px;
 background:#eee;
 font-size:14px;
 color:#666;
+&.slide-enter{
+    transition:all .2s ease-out
+}
+&.slide-enter-active{
+    width:240px;
+}
+&.slide-exit{
+    transition:all .2s ease-out
+}
+
+&.slide-exit-active{
+    width:160px;
+}
 &::placeholder{
     color:#999
 }
@@ -93,19 +106,6 @@ color:#fff;
 export const SearchWrapper = styled.div`
 float:left;
 position:relative;
-.slide-enter{
-    transition:all .2s ease-out
-}
-.slide-enter-active{
-    width:240px;
-}
-.slide-exit{
-    transition:all .2s ease-out
-}
-
-.slide-exit-active{
-    width:160px;
-}
 .iconfont{
     position:absolute;
     right:5px;
