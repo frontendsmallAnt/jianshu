@@ -12,53 +12,79 @@ import {
     Btn,
     SearchWrapper,
     SearchInfo,
-    SearchTitle
+    SearchInfoTitle,
+    SearchInfoSwitch,
+    SearchInfoItem
 } from "./style"
 
+const getItems = (show) => {
+    if (show) {
+        return (
+            <SearchInfo>
+                <SearchInfoTitle>
+                    热门搜索
+          <SearchInfoSwitch>换一换</SearchInfoSwitch>
+                </SearchInfoTitle>
+                <div>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                    <SearchInfoItem>教育</SearchInfoItem>
+                </div>
+            </SearchInfo>
+        )
+    } else {
+        return null
+    }
+}
+
 const Header = (props) => {
-return(
-    <HeaderWrapper>
-        <Logo />
-        <Nav>
-            <NavItem className="left active">首页</NavItem>
-            <NavItem className="left">下载APP</NavItem>
-            <NavItem className="right">登录</NavItem>
-            <NavItem className="right">
-                <span className="iconfont">&#xe636;</span>
-            </NavItem>
-            <SearchWrapper>
-                <CSSTransition
-                    timeout={200}
-                    in={props.focused}
-                    classNames="slide"
-                >
-                    <NavSearch
-                        className={props.focused ? "focused" : ""}
-                        onFocus={props.handleInputFocus}
-                        onBlur={props.handleInputBlur}
+    return (
+        <HeaderWrapper>
+            <Logo />
+            <Nav>
+                <NavItem className="left active">首页</NavItem>
+                <NavItem className="left">下载APP</NavItem>
+                <NavItem className="right">登录</NavItem>
+                <NavItem className="right">
+                    <span className="iconfont">&#xe636;</span>
+                </NavItem>
+                <SearchWrapper>
+                    <CSSTransition
+                        timeout={200}
+                        in={props.focused}
+                        classNames="slide"
                     >
-                    </NavSearch>
-                </CSSTransition>
-                <span className={props.focused ? "iconfont focused" : "iconfont"}>&#xe623;</span>
-                <SearchInfo>
-                    <SearchTitle>
-                        热门搜索
-                        
-                    </SearchTitle>
-                </SearchInfo>
-            </SearchWrapper>
-        </Nav>
-        <Addition>
-            <Btn className="writting"><span className="iconfont">&#xe624;</span>写文章</Btn>
-            <Btn className="reg">注册</Btn>
-        </Addition>
-    </HeaderWrapper>
-)
+                        <NavSearch
+                            className={props.focused ? "focused" : ""}
+                            onFocus={props.handleInputFocus}
+                            onBlur={props.handleInputBlur}
+                        >
+                        </NavSearch>
+                    </CSSTransition>
+                    <span className={props.focused ? "iconfont focused" : "iconfont"}>&#xe623;</span>
+                    {getItems(props.focused)}
+                </SearchWrapper>
+            </Nav>
+            <Addition>
+                <Btn className="writting"><span className="iconfont">&#xe624;</span>写文章</Btn>
+                <Btn className="reg">注册</Btn>
+            </Addition>
+        </HeaderWrapper>
+    )
 }
 
 const mapStateToProps = (state) => {
     return {
-        focused: state.getIn(['header','focused'])
+        focused: state.getIn(['header', 'focused'])
     }
 }
 
