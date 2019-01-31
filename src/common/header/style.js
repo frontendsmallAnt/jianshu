@@ -94,6 +94,7 @@ export const SearchTitle = styled.div`
 margin-top:20px;
 margin-bottom:15px;
 line-height:20px;
+height:auto
 `
 
 export const Addition = styled.div`
