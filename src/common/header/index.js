@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux"
 import { CSSTransition } from "react-transition-group"
+import { actionCreator } from "./store"
 import {
     HeaderWrapper,
     Logo,
@@ -9,7 +10,9 @@ import {
     NavSearch,
     Addition,
     Btn,
-    SearchWrapper
+    SearchWrapper,
+    SearchInfo,
+    SearchTitle
 } from "./style"
 
 const Header = (props) => {
@@ -37,6 +40,12 @@ return(
                     </NavSearch>
                 </CSSTransition>
                 <span className={props.focused ? "iconfont focused" : "iconfont"}>&#xe623;</span>
+                <SearchInfo>
+                    <SearchTitle>
+                        热门搜索
+                        
+                    </SearchTitle>
+                </SearchInfo>
             </SearchWrapper>
         </Nav>
         <Addition>
@@ -49,23 +58,17 @@ return(
 
 const mapStateToProps = (state) => {
     return {
-        focused: state.focused
+        focused: state.getIn(['header','focused'])
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
         handleInputFocus() {
-            const action = {
-                type: "search_focus",
-            }
-            dispatch(action)
+            dispatch(actionCreator.searchFocus())
         },
         handleInputBlur() {
-            const action = {
-                type: "search_blur",
-            }
-            dispatch(action)
+            dispatch(actionCreator.searchBlur())
         }
     }
 }
